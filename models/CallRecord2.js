@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 
 const callRecordSchema = new mongoose.Schema(
   {
-    phoneNumber: { type: String, required: true },
+    phoneNumber: { type: String, required: true,match: /^[0-9]{10}$/,message: "Has to be 10 Digits", },
     callerName: { type: String, required: true },
     company: { type: String, required: true },
     serialNumber: { 
       type: String, 
-      required: true, 
-      match: /^[0-9]{9}$/, // 9-digit validation
+      required: false, 
+      match: /^[0-9]{9}$/, 
+      message: "Has to be 9 digits long and start with 7",// 9-digit validation
     },
     callTime: { type: Date, required: true },
     reason: { type: String, required: false },
