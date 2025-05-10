@@ -127,18 +127,15 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { statusOfCall, assignedTo } = req.body;
+  const { statusOfCall, assignedTo, serialNumber } = req.body;
 
   try {
     const updatedFields = {};
     if (statusOfCall !== undefined) updatedFields.statusOfCall = statusOfCall;
     if (assignedTo !== undefined) updatedFields.assignedTo = assignedTo;
+    if (serialNumber !== undefined) updatedFields.serialNumber = serialNumber;
 
-    const updatedRecord = await CallRecord.findByIdAndUpdate(
-      id,
-      updatedFields,
-      { new: true }
-    );
+    const updatedRecord = await CallRecord.findByIdAndUpdate(id, updatedFields, { new: true });
 
     if (!updatedRecord) {
       return res.status(404).json({ message: "Call record not found" });
