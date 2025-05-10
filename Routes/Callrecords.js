@@ -127,13 +127,15 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { statusOfCall, assignedTo, serialNumber } = req.body;
+  const { statusOfCall, assignedTo, serialNumber, email } = req.body;
 
   try {
     const updatedFields = {};
+
     if (statusOfCall !== undefined) updatedFields.statusOfCall = statusOfCall;
     if (assignedTo !== undefined) updatedFields.assignedTo = assignedTo;
     if (serialNumber !== undefined) updatedFields.serialNumber = serialNumber;
+    if (email !== undefined) updatedFields.email = email;  // Add this line to handle email update
 
     const updatedRecord = await CallRecord.findByIdAndUpdate(id, updatedFields, { new: true });
 
@@ -147,6 +149,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ message: "Error updating record", error });
   }
 });
+
 
 
 module.exports = router;
