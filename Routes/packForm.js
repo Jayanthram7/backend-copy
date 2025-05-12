@@ -41,6 +41,23 @@ router.post("/", async (req, res) => {
       res.status(500).json({ message: "Server error" });
     }
   });
+  // GET /api/pack-form/:id
+router.get("/:id", async (req, res) => {
+    try {
+      const recordId = req.params.id;
+  
+      const existing = await PackForm.findOne({ recordId });
+  
+      if (!existing) {
+        return res.status(404).json({ message: "Not found" });
+      }
+  
+      res.json(existing);
+    } catch (err) {
+      console.error("Error fetching form data:", err);
+      res.status(500).json({ message: "Server error" });
+    }
+  });
   
 
 module.exports = router;
