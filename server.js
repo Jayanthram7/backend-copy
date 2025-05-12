@@ -8,6 +8,13 @@ const registerRoute = require("./Routes/Register");
 const loginRoute = require("./Routes/LoginPagee");
 const packFormRoute = require("./Routes/packForm"); // ✅ NEW
 
+
+app.use(cors({
+  origin: "http://localhost:3000", // ✅ allow your frontend origin
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 const { connectToDb } = require("./Config/db");
 
 const app = express();
