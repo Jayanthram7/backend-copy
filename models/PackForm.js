@@ -1,7 +1,7 @@
-// models/PackForm.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const packFormSchema = new mongoose.Schema({
+  recordId: { type: String, required: true },
   companyName: String,
   flavour: String,
   serialNo: String,
@@ -10,6 +10,6 @@ const packFormSchema = new mongoose.Schema({
   mobileNo: String,
   gst: String,
   timePeriod: String,
-}, { timestamps: true });
+});
 
-module.exports = mongoose.model('PackForm', packFormSchema);
+module.exports = mongoose.model("PackForm", packFormSchema);
