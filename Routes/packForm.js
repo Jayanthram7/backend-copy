@@ -34,6 +34,8 @@ router.post("/", async (req, res) => {
         },
         { new: true, upsert: true }
       );
+      await CallRecord.findByIdAndUpdate(recordId, { statusOfCall: "Complete" });
+
   
       res.status(200).json(saved);
     } catch (error) {
